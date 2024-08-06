@@ -1,21 +1,28 @@
 import os
-import openai
+from openai import OpenAI
 from dotenv import load_dotenv
 
-#PI key from the .env file
+# Load your API key from the .env file
 load_dotenv()
-openai.api_key = os.getenv('OPENAI_API_KEY')
+api_key = os.getenv('OPENAI_API_KEY')
+
+# Initialize the OpenAI client
+client = OpenAI(api_key=api_key)
 
 def generate_recipe(prompt):
-    response = openai.Completion.create(
-        engine="text-davinci-003",
-        prompt=prompt,
-        max_tokens=150
+    response = client.chat.completions.create(
+        messages=[
+            {
+                "role": "user",
+                "content": prompt,
+            }
+        ],
+        model="gpt-4o",
     )
-    return response.choices[0].text.strip()
+    return response.choices[0].message.content.strip()
 
 def main():
-    prompt = "Create a recipe for a delicious chocolate cake with the following ingredients: flour, sugar, cocoa powder, eggs, and butter."
+    prompt = "Create a breakfast recipe that is very quick and easy to make, and also has a lot of protein inside. Recipe needs to have a simple to understand words and language. Variety from scrambled eggs, to porridge, to anything you could imagine."
     recipe = generate_recipe(prompt)
     print("Generated Recipe:")
     print(recipe)
