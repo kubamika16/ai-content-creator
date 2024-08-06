@@ -9,6 +9,10 @@ api_key = os.getenv('OPENAI_API_KEY')
 # Initialize the OpenAI client
 client = OpenAI(api_key=api_key)
 
+# Ensure API key is loaded
+if not api_key:
+    raise ValueError("API key not found. Please set the OPENAI_API_KEY in the .env file.")
+
 def generate_recipe(prompt):
     response = client.chat.completions.create(
         messages=[
