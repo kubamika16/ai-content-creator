@@ -14,3 +14,11 @@ def generate_recipe(prompt):
     )
     return response.choices[0].text.strip()
 
+def main():
+    prompt = "Create a recipe for a delicious chocolate cake with the following ingredients: flour, sugar, cocoa powder, eggs, and butter."
+    recipe = generate_recipe(prompt)
+    print("Generated Recipe:")
+    print(recipe)
+
+if __name__ == "__main__":
+    main()
