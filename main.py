@@ -1,4 +1,4 @@
-from src.openai_interaction import generate_recipe
+from src.openai_interaction import generate_recipe, generate_image_prompt
 
 def main():
     # Step 1: Generate recipe
@@ -6,6 +6,11 @@ def main():
     recipe = generate_recipe(recipe_prompt)
     print("Generated Recipe:")
     print(recipe)
+
+    # Step 2: Generate image prompt
+    image_prompt = generate_image_prompt(recipe)
+    print("Generated Image Prompt")
+    print(image_prompt)
 
 if __name__ == "__main__":
     main()
