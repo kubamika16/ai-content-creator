@@ -13,7 +13,7 @@ if not api_key:
 #Initialize the openAI client
 client = OpenAI(api_key=api_key)
 
-def get_openai_response(prompt, model="gpt-4o"):
+def get_openai_response(prompt, model="gpt-4o-mini"):
     try:
         response = client.chat.completions.create(
             messages=[

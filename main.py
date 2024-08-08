@@ -1,4 +1,5 @@
 from src.openai_interaction import generate_recipe, generate_image_prompt
+from src.instagram_poster import post_to_instagram
 
 def main():
     # Step 1: Generate recipe
@@ -12,6 +13,15 @@ def main():
     print("Generated Image Prompt")
     print(image_prompt)
 
+
+    caption = recipe;
+    photo_path = "nature.png"
+
+    if post_to_instagram(photo_path, caption):
+            print("Successfully posted to Instagram.")
+    else:
+        print("Failed to post to Instagram.")
+    
 if __name__ == "__main__":
     main()
 
