@@ -4,9 +4,10 @@ import json
 import time
 from dotenv import load_dotenv
 
-# Load environment variables
+# Load environment variables from a .env file
 load_dotenv()
 
+# Define the API endpoints and API key
 API_URL = "https://api.apiframe.pro/imagine"
 FETCH_URL = "https://api.apiframe.pro/fetch"
 API_KEY = os.getenv('MIDJOURNEY_API_KEY')
@@ -15,6 +16,19 @@ def generate_image(prompt, aspect_ratio="1:1", webhook_url=None, webhook_secret=
     if not API_KEY:
         raise ValueError("API key not found. Please set the MIDJOURNEY_API_KEY in the .env file.")
     
+    """
+    Generate an image using the MidJourney API based on a given prompt.
+
+    Args:
+        prompt (str): The text prompt to generate the image.
+        aspect_ratio (str): The aspect ratio of the generated image (default is "1:1").
+        webhook_url (str, optional): URL to receive webhook notifications (default is None).
+        webhook_secret (str, optional): Secret key for webhook authentication (default is None).
+
+    Returns:
+        str: URL of the generated image if successful, None otherwise.
+    """
+
     payload = {
         "prompt": prompt,
         "aspect_ratio": aspect_ratio,
@@ -71,6 +85,18 @@ def generate_image(prompt, aspect_ratio="1:1", webhook_url=None, webhook_secret=
         return None
 
 def download_image_from_url(image_url, save_path):
+
+    """
+    Download an image from a given URL and save it to a specified local path.
+
+    Args:
+        image_url (str): URL of the image to download.
+        save_path (str): Local file path to save the downloaded image.
+
+    Returns:
+        None
+    """
+
     try:
         # Send a GET request to the image URL
         response = requests.get(image_url)
@@ -84,6 +110,17 @@ def download_image_from_url(image_url, save_path):
         print(f"Failed to download the image: {e}")
 
 def fetch_image_result(task_id):
+
+    """
+    Fetch the result of an image generation task from the MidJourney API.
+
+    Args:
+        task_id (str): The task ID of the image generation request.
+
+    Returns:
+        list: List of image URLs if the task is finished, None otherwise.
+    """
+
     payload = json.dumps({
         "task_id": task_id
     })

@@ -3,20 +3,16 @@ from src.instagram_poster import post_to_instagram
 from src.midjourney_interaction import generate_image, download_image_from_url
 
 from apiframe_python import ApiframeClient
-import time
-
-import requests
-import json
 
 def main():
 
-    # Step 1: Generate recipe
+    # Step 1: Generate a recipe using OpenAI
     recipe_prompt = "Create a quick and easy breakfast recipe that's packed with protein. The recipe should be simple to follow and use clear language. It can be based on any of the following categories: Scrambled Eggs, Protein Smoothies, Greek Yogurt Parfaits, Overnight Oats, Breakfast Burritos, Cottage Cheese Bowls, Protein Pancakes, Avocado Toast with Eggs, Nut Butter Toast, Chia Pudding, Quinoa Bowls, Hard-Boiled Eggs, Tuna or Chicken Salad Wraps, Protein Muffins, Breakfast Quesadillas, Breakfast Bowls, Protein Bars, Omelette Variations, Breakfast Sandwiches, High-Protein Cereals, Egg-Based Dishes, Meat and Cheese Platters, Plant-Based Protein Breakfasts, Protein-Enhanced Baked Goods, Savory Breakfasts, Nut and Seed-Based Meals, Dairy-Based Breakfasts, Protein-Enhanced Drinks, Legume-Based Breakfasts, or Seafood-Based Breakfasts. Include a few emojis to make it more engaging, but don't overdo it. Add an emoji to every ingredient in the recipe, but avoid them in the instructions. Do not use any introductory phrases, stars (*), or special markdown symbols (**, ###). Just provide the recipe directly."
     recipe = get_openai_response(recipe_prompt)
     print("Generated Recipe:")
     print(recipe)
 
-    # Step 2: Generate image prompt
+     # Step 2: Generate an image prompt for MidJourney based on the recipe
     image_prompt = (
             f"You have to create a prompt for MidJourney. Based on the recipe below, and then some examples create a ONLY ONE PROMPT:\n\n"
             f"{recipe}\n\n"
@@ -31,21 +27,21 @@ def main():
     print("Generated Image Prompt")
     print(image_prompt_result)
 
-    #Step 3: Generate file path prompt
+    # Step 3: Generate a file path prompt for saving the image
     file_name_prompt = f"Based on a description below, create a max 5 words recipe name with underscore (_) instead of space breaks. Recipe: {image_prompt_result}"
     save_path =  get_openai_response(file_name_prompt, "gpt-4o-mini")
 
-    # Step 3: Generate image using MidJourney
+    # Step 4: Generate an image using MidJourney based on the prompt
     image_url = generate_image(image_prompt_result)
     if not image_url:
         print("Failed to generate or fetch the image.")
         return
     print(f"Image URL: {image_url}")
 
-    # Step 4: Save photo from URL to folder ai_photos
+    # Step 5: Save the generated image from the URL to the folder ai_photos
     download_image_from_url(image_url, f"ai_photos/{save_path}.png")
 
-    # Step 4: Post to Instagram
+    # Step 6: Post the generated image and recipe to Instagram
     if post_to_instagram(f"ai_photos/{save_path}.png", recipe):
             print("Successfully posted to Instagram.")
     else:

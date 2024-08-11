@@ -7,10 +7,11 @@ from dotenv import load_dotenv
 load_dotenv()
 api_key = os.getenv('OPENAI_API_KEY')
 
+# Check if the API key is loaded, raise an error if not
 if not api_key:
     raise ValueError("API key not found. Check the OPENAI_API_KEY in the .env file.")
 
-#Initialize the openAI client
+# Initialize the OpenAI client with the provided API key
 client = OpenAI(api_key=api_key)
 
 def get_openai_response(prompt, model="gpt-4o"):
