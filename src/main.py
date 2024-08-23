@@ -1,6 +1,8 @@
-from src.openai_interaction import get_openai_response
-from src.instagram_poster import post_to_instagram
-from src.midjourney_interaction import generate_image, download_image_from_url
+from openai_interaction import get_openai_response
+from instagram_poster import post_to_instagram
+from midjourney_interaction import generate_image, download_image_from_url
+
+import os
 
 def main():
 
@@ -30,25 +32,25 @@ def main():
     save_path =  get_openai_response(file_name_prompt, "gpt-4o-mini")
 
     # Step 4: Generate an image using MidJourney based on the prompt
-    # image_url = generate_image(image_prompt_result)
-    # Dummy URL for tests
-    image_url = "https://cdn.apiframe.pro/images/75662822011517142689279460395812-1.png"
+    image_url = generate_image(image_prompt_result)
+    # DUMMY URL for tests
+    # image_url = "https://cdn.apiframe.pro/images/75662822011517142689279460395812-1.png"
     if not image_url:
         print("Failed to generate or fetch the image.")
         return
     print(f"Image URL: {image_url}")
 
     # Step 5: Save the generated image from the URL to the folder ai_photos
-    download_image_from_url(image_url, f"ai_photos/{save_path}.png")
+    download_image_from_url(image_url, f"src/ai_photos/{save_path}.png")
 
-    # # Step 6: Post the generated image and recipe to Instagram
-    # if post_to_instagram(f"ai_photos/{save_path}.png", recipe):
-    #         print("Successfully posted to Instagram.")
-    # else:
-    #     print("Failed to post to Instagram.")
+    # Step 6: Post the generated image and recipe to Instagram
+    if post_to_instagram(f"src/ai_photos/{save_path}.png", recipe):
+            print("Successfully posted to Instagram.")
+    else:
+        print("Failed to post to Instagram.")
 
-    # Dummy Step 6: Pretend posting to Instagram 
-    print("Successfully posted to Instagram.")
+    # DUMMY STEP 6: Pretend posting to Instagram 
+    # print("Successfully posted to Instagram.")
 
 if __name__ == "__main__":
     main()

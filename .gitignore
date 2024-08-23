@@ -2,9 +2,12 @@
 __pycache__/
 *.pyc
 *.pyo
+
+# Ignore the environment file
 .env
 
-# Environment
-.env
+# Ignore the package directory
+package/
 
+# macOS specific file
 .DS_Store
