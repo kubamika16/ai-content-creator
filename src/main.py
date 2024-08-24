@@ -1,8 +1,12 @@
 import os
 import sys
-sys.path.append(os.path.join(os.path.dirname(__file__), "package"))
-# Add the parent directory of 'src' to the sys.path
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+# Determine if the script is running in AWS Lambda
+if "LAMBDA_RUNTIME_DIR" in os.environ:
+    sys.path.append(os.path.join(os.path.dirname(__file__), "package"))
+else:
+    # Add the parent directory of 'src' for local development
+    sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 # Log the Python path to verify
 print("Python sys.path:", sys.path)
 
