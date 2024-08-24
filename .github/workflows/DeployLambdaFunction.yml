@@ -24,6 +24,12 @@ jobs:
       - name: Install zip tool
         run: sudo apt-get install -y zip
 
+      - name: Print working directory and list contents
+        run: |
+          pwd
+          ls -la
+          ls -la function/
+
       - name: Create Zip file for Lambda function
         run: |
           mkdir deployment
