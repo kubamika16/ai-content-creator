@@ -1,6 +1,6 @@
-from openai_interaction import get_openai_response
-from instagram_poster import post_to_instagram
-from midjourney_interaction import generate_image, download_image_from_url
+from src.openai_interaction import get_openai_response
+from src.instagram_poster import post_to_instagram
+from src.midjourney_interaction import generate_image, download_image_from_url
 
 import os
 
