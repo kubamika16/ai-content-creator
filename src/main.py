@@ -1,10 +1,15 @@
+import os
+import sys
+sys.path.append(os.path.join(os.path.dirname(__file__), "package"))
+# Add the parent directory of 'src' to the sys.path
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+# Log the Python path to verify
+print("Python sys.path:", sys.path)
+
 from src.openai_interaction import get_openai_response
 from src.instagram_poster import post_to_instagram
 from src.midjourney_interaction import generate_image, download_image_from_url
 
-import os
-import sys
-sys.path.append(os.path.join(os.path.dirname(__file__), "package"))
 
 def main():
 
