@@ -26,8 +26,7 @@ jobs:
 
       - name: Create Zip file for Lambda function
         run: |
-          cd src
-          zip -r code.zip .
+          zip -r code.zip src/ config/ package/ function/
 
       - name: List src directory contents for debugging
         run: ls -la src/

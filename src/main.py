@@ -48,7 +48,7 @@ def main():
 
     # Step 6: Post the generated image and recipe to Instagram
     if post_to_instagram(file_path, recipe):
-            print("Successfully posted to Instagram. Package & openAI")
+            print("Successfully posted to Instagram. Package & openAI. Lets see")
     else:
         print("Failed to post to Instagram.")
 
