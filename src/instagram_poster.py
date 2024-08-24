@@ -4,8 +4,8 @@ from dotenv import load_dotenv
 
 # Load environment variables from a .env file
 load_dotenv()
-instagram_username = os.getenv('INSTAGRAM_USERNAME')
-instagram_password = os.getenv('INSTAGRAM_PASSWORD')
+instagram_username = os.environ['INSTAGRAM_USERNAME']
+instagram_password = os.environ['INSTAGRAM_PASSWORD']
 
 
 def post_to_instagram(photo_path, caption):

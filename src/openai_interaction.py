@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 
 # Loading API key from the .env file
 load_dotenv()
-api_key = os.getenv('OPENAI_API_KEY')
+api_key = os.environ['OPENAI_API_KEY']
 
 # Check if the API key is loaded, raise an error if not
 if not api_key:

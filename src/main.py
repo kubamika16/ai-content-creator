@@ -52,11 +52,11 @@ def main():
     else:
         print("Failed to post to Instagram.")
 
-    # Step 7: Delete photo from ai_photos to prevent project getting bigger 
-    os.remove(file_path)
-
     # DUMMY STEP 6: Pretend posting to Instagram 
     # print("Successfully posted to Instagram.")
+
+    # Step 7: Delete photo from ai_photos to prevent project getting bigger 
+    os.remove(file_path)
 
 if __name__ == "__main__":
     main()

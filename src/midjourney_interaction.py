@@ -10,7 +10,7 @@ load_dotenv()
 # Define the API endpoints and API key
 API_URL = "https://api.apiframe.pro/imagine"
 FETCH_URL = "https://api.apiframe.pro/fetch"
-API_KEY = os.getenv('MIDJOURNEY_API_KEY')
+API_KEY = os.environ['MIDJOURNEY_API_KEY']
 
 def generate_image(prompt, aspect_ratio="1:1", webhook_url=None, webhook_secret=None):
     if not API_KEY:
