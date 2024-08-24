@@ -2,7 +2,7 @@ import os
 import sys
 
 # This ensures the 'package' directory is in the path
-sys.path.append(os.path.join(os.path.dirname(__file__), "package"))
+sys.path.append(os.path.join(os.path.dirname(__file__), "..", "package"))
 
 # Print sys.path to verify
 print("Python sys.path:", sys.path)
