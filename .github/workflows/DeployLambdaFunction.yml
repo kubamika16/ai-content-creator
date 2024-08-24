@@ -26,7 +26,14 @@ jobs:
 
       - name: Create Zip file for Lambda function
         run: |
-          zip -r code.zip src/ package/ function/
+          mkdir deployment
+          cp -r src/ deployment/
+          cp -r function/ deployment/
+          mkdir deployment/package
+          cp -r package/openai/ deployment/package/
+          cp -r package/openai-1.42.0.dist-info/ deployment/package/
+          cd deployment
+          zip -r ../code.zip .
 
       - name: List src directory contents for debugging
         run: ls -la
