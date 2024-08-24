@@ -38,6 +38,7 @@ jobs:
           mkdir deployment/package
           cp -r package/openai/ deployment/package/
           cp -r package/openai-1.42.0.dist-info/ deployment/package/
+          cp -r package/typing_extensions.py deployment/package/
           cd deployment
           zip -r ../code.zip .
 
