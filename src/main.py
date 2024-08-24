@@ -1,15 +1,12 @@
-# from src.openai_interaction import get_openai_response
-# from src.instagram_poster import post_to_instagram
-# from src.midjourney_interaction import generate_image, download_image_from_url
+from src.openai_interaction import get_openai_response
+from src.instagram_poster import post_to_instagram
+from src.midjourney_interaction import generate_image, download_image_from_url
 
-# import os
-
-# import sys
-# sys.path.append(os.path.join(os.path.dirname(__file__), "package"))
+import os
+import sys
+sys.path.append(os.path.join(os.path.dirname(__file__), "package"))
 
 def main():
-
-    print("Hello!")
 
     # Step 1: Generate a recipe using OpenAI
     recipe_prompt = "Create a quick and easy breakfast recipe that's packed with protein. The recipe should be simple to follow and use clear language. It can be based on any of the following categories: Scrambled Eggs, Protein Smoothies, Greek Yogurt Parfaits, Overnight Oats, Breakfast Burritos, Cottage Cheese Bowls, Protein Pancakes, Avocado Toast with Eggs, Nut Butter Toast, Chia Pudding, Quinoa Bowls, Hard-Boiled Eggs, Tuna or Chicken Salad Wraps, Protein Muffins, Breakfast Quesadillas, Breakfast Bowls, Protein Bars, Omelette Variations, Breakfast Sandwiches, High-Protein Cereals, Egg-Based Dishes, Meat and Cheese Platters, Plant-Based Protein Breakfasts, Protein-Enhanced Baked Goods, Savory Breakfasts, Nut and Seed-Based Meals, Dairy-Based Breakfasts, Protein-Enhanced Drinks, Legume-Based Breakfasts, or Seafood-Based Breakfasts. Include a few emojis to make it more engaging, but don't overdo it. Add an emoji to every ingredient in the recipe, but avoid them in the instructions. Do not use any introductory phrases, stars (*), or special markdown symbols (**, ###). Just provide the recipe directly."
