@@ -37,7 +37,7 @@ jobs:
           args: >
             lambda update-function-code
             --function-name arn:aws:lambda:eu-north-1:779846800085:function:ai-content-creator
-            --zip-file fileb://src/code.zip
+            --zip-file fileb://code.zip
 
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
