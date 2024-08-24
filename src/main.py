@@ -4,6 +4,9 @@ from src.midjourney_interaction import generate_image, download_image_from_url
 
 import os
 
+import sys
+sys.path.append(os.path.join(os.path.dirname(__file__), "package"))
+
 def main():
 
     # Step 1: Generate a recipe using OpenAI
