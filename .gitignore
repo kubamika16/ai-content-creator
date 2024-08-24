@@ -7,7 +7,7 @@ __pycache__/
 .env
 
 # Ignore the package directory
-package/
+# package/
 
 # macOS specific file
 .DS_Store
