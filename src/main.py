@@ -45,7 +45,7 @@ def main():
 
     # Step 6: Post the generated image and recipe to Instagram
     if post_to_instagram(f"src/ai_photos/{save_path}.png", recipe):
-            print("Successfully posted to Instagram. Connection with GitHub.")
+            print("Successfully posted to Instagram. Connection with GitHub and Lambda.")
     else:
         print("Failed to post to Instagram.")
 
