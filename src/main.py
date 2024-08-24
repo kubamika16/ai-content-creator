@@ -1,14 +1,13 @@
 import os
 import sys
-# Determine if the script is running in AWS Lambda
-if "LAMBDA_RUNTIME_DIR" in os.environ:
-    sys.path.append(os.path.join(os.path.dirname(__file__), "package"))
-else:
-    # Add the parent directory of 'src' for local development
-    sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-# Log the Python path to verify
+# This ensures the 'package' directory is in the path
+sys.path.append(os.path.join(os.path.dirname(__file__), "package"))
+
+# Print sys.path to verify
 print("Python sys.path:", sys.path)
+
+
 
 from src.openai_interaction import get_openai_response
 from src.instagram_poster import post_to_instagram
