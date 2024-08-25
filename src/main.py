@@ -61,7 +61,7 @@ def main(event, context):
     if post_to_instagram(file_path, recipe):
             print("Successfully posted to Instagram. Package & openAI.")
     else:
-        print("Failed to post to Instagram.")
+        print("Failed to post to Instagram. London?")
 
     # DUMMY STEP 6: Pretend posting to Instagram 
     # print("Successfully posted to Instagram.")
