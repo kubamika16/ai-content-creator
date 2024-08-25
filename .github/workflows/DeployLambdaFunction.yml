@@ -47,13 +47,13 @@ jobs:
         with:
           args: >
             lambda update-function-code
-            --function-name arn:aws:lambda:eu-north-1:779846800085:function:ai-content-creator
+            --function-name arn:aws:lambda:eu-west-2:779846800085:function:ai-content-creator
             --zip-file fileb://code.zip
 
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_DEFAULT_REGION: "eu-north-1"
+          AWS_DEFAULT_REGION: "eu-west-2"
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           INSTAGRAM_USERNAME: ${{ secrets.INSTAGRAM_USERNAME }}
           INSTAGRAM_PASSWORD: ${{ secrets.INSTAGRAM_PASSWORD }}
