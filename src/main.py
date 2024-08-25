@@ -40,7 +40,10 @@ def main(event, context):
     # Step 3: Generate a file path prompt for saving the image
     file_name_prompt = f"Based on a description below, create a max 5 words recipe name with underscore (_) instead of space breaks. Recipe: {image_prompt_result}"
     save_path =  get_openai_response(file_name_prompt, "gpt-4o-mini")
-    file_path = f"src/ai_photos/{save_path}.png"
+
+      # Use /tmp directory for file path in Lambda
+    file_path = f"/tmp/{save_path}.png"
+    # file_path = f"src/ai_photos/{save_path}.png"
 
     # Step 4: Generate an image using MidJourney based on the prompt
     image_url = generate_image(image_prompt_result)
