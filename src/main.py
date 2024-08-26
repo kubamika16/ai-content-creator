@@ -46,9 +46,9 @@ def main(event, context):
     # file_path = f"src/ai_photos/{save_path}.png"
 
     # Step 4: Generate an image using MidJourney based on the prompt
-    image_url = generate_image(image_prompt_result)
+    # image_url = generate_image(image_prompt_result)
     # DUMMY URL for tests
-    # image_url = "https://cdn.apiframe.pro/images/75662822011517142689279460395812-1.png"
+    image_url = "https://cdn.apiframe.pro/images/75662822011517142689279460395812-1.png"
     if not image_url:
         print("Failed to generate or fetch the image.")
         return
