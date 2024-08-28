@@ -37,38 +37,18 @@ def main(event, context):
     print("Generated Image Prompt")
     print(image_prompt_result)
 
-    # Step 3: Generate a file path prompt for saving the image
-    file_name_prompt = f"Based on a description below, create a max 5 words recipe name with underscore (_) instead of space breaks. Recipe: {image_prompt_result}"
-    save_path =  get_openai_response(file_name_prompt, "gpt-4o-mini")
-
-      # Use /tmp directory for file path in Lambda
-    # file_path = f"/tmp/{save_path}.png"
-    file_path = f"src/ai_photos/{save_path}.png"
-
-    # Step 4: Generate an image using MidJourney based on the prompt
+    # Step 3: Generate an image using MidJourney based on the prompt
     image_url = generate_image(image_prompt_result)
     # DUMMY URL for tests
     # image_url = "https://cdn.apiframe.pro/images/75662822011517142689279460395812-1.png"
-    # image_url = "https://upload.wikimedia.org/wikipedia/commons/f/f6/Sample_0.JPEG"
     if not image_url:
         print("Failed to generate or fetch the image.")
         return
     print(f"Image URL: {image_url}")
 
-    # Step 5: Save the generated image from the URL to the folder ai_photos
-    download_image_from_url(image_url, file_path)
+    # Step 4: Post the generated image and recipe to Instagram
+    post_to_instagram(image_url, recipe)
 
-    # Step 6: Post the generated image and recipe to Instagram
-    if post_to_instagram(image_url, recipe):
-            print("Successfully posted to Instagram. Package & openAI.")
-    else:
-        print("Failed to post to Instagram. London?")
-
-    # DUMMY STEP 6: Pretend posting to Instagram 
-    # print("Successfully posted to Instagram.")
-
-    # Step 7: Delete photo from ai_photos to prevent project getting bigger 
-    os.remove(file_path)
 
 if __name__ == "__main__":
     main()
