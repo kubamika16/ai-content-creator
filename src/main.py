@@ -42,13 +42,14 @@ def main(event, context):
     save_path =  get_openai_response(file_name_prompt, "gpt-4o-mini")
 
       # Use /tmp directory for file path in Lambda
-    file_path = f"/tmp/{save_path}.png"
-    # file_path = f"src/ai_photos/{save_path}.png"
+    # file_path = f"/tmp/{save_path}.png"
+    file_path = f"src/ai_photos/{save_path}.png"
 
     # Step 4: Generate an image using MidJourney based on the prompt
-    # image_url = generate_image(image_prompt_result)
+    image_url = generate_image(image_prompt_result)
     # DUMMY URL for tests
-    image_url = "https://cdn.apiframe.pro/images/75662822011517142689279460395812-1.png"
+    # image_url = "https://cdn.apiframe.pro/images/75662822011517142689279460395812-1.png"
+    # image_url = "https://upload.wikimedia.org/wikipedia/commons/f/f6/Sample_0.JPEG"
     if not image_url:
         print("Failed to generate or fetch the image.")
         return
@@ -58,7 +59,7 @@ def main(event, context):
     download_image_from_url(image_url, file_path)
 
     # Step 6: Post the generated image and recipe to Instagram
-    if post_to_instagram(file_path, recipe):
+    if post_to_instagram(image_url, recipe):
             print("Successfully posted to Instagram. Package & openAI.")
     else:
         print("Failed to post to Instagram. London?")

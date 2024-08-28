@@ -1,66 +1,66 @@
-from instagrapi import Client
 import os
-from dotenv import load_dotenv
 import requests
+from dotenv import load_dotenv
 
 # Load environment variables from a .env file
 load_dotenv()
-instagram_username = os.environ['INSTAGRAM_USERNAME']
-instagram_password = os.environ['INSTAGRAM_PASSWORD']
+access_token = os.environ['IG_ACCESS_TOKEN']
+instagram_account_id = os.environ['INSTAGRAM_ACCOUNT_ID']
 
-# Set up the proxy
-host = 'brd.superproxy.io'
-port = 22225
-proxy_username = os.environ['PROXY_USERNAME'] 
-proxy_password = os.environ['PROXY_PASSWORD']
-
-proxy_url = f'http://{proxy_username}:{proxy_password}@{host}:{port}'
-
-
-proxies = {
-    'http': proxy_url,
-    'https': proxy_url
-}
-
-# Update the requests library's default settings to use the proxy
-requests_session = requests.Session()
-requests_session.proxies.update(proxies)
-
-# You can print the IP to confirm proxy usage
-response = requests_session.get("http://lumtest.com/myip.json")
-print("Proxy IP:", response.json())
-
-
-def post_to_instagram(photo_path, caption):
-
+def post_to_instagram(photo_url, caption):
     """
-    Post a photo to Instagram with a given caption.
+    Post a photo to Instagram with a given caption using the Instagram Graph API.
 
     Args:
-        photo_path (str): The file path to the photo to be uploaded.
+        photo_url (str): The URL to the photo to be uploaded.
         caption (str): The caption to accompany the photo.
 
     Returns:
         bool: True if the photo was successfully posted, otherwise False.
     """
 
-    # Initialize the Instagram client
-    client = Client()
+    # Step 1: Create a media container
+    create_media_url = f"https://graph.facebook.com/v20.0/{instagram_account_id}/media"
+    print(create_media_url)
+    media_params = {
+        'image_url': photo_url,
+        'caption': caption,
+        'access_token': access_token
+    }
 
-    # Assign the custom requests session with the proxy to the client
-    client.private.requests = requests_session
+    response = requests.post(create_media_url, params=media_params)
 
-    # Login to Instagram using the provided credentials
-    client.login(instagram_username, instagram_password)
+    # Check the response before attempting to parse it as JSON
+    print(f"Response Status Code: {response.status_code}")
+    print(f"Raw response content: {response.text}")
 
-    # Upload the photo with the specified caption and optional extra data
-    media = client.photo_upload(
-        path=photo_path,
-        caption=caption,
-        extra_data={
-            "custom_accessibility_caption": "alt text example",  # Optional
-            "like_and_view_counts_disabled": 1,  # Optional
-            "disable_comments": 1,  # Optional
-        }
-    )
+    if response.status_code != 200:
+        print(f"Failed to create media container. Status Code: {response.status_code}")
+        return False
+
+    try:
+        media_container_id = response.json().get("id")
+        if not media_container_id:
+            print("Failed to retrieve media container ID")
+            return False
+    except requests.exceptions.JSONDecodeError:
+        print("Failed to parse JSON response")
+        print("Response Text:", response.text)
+        return False
+
+    # Step 2: Publish the media container
+    publish_media_url = f"https://graph.facebook.com/v20.0/{instagram_account_id}/media_publish"
+    publish_params = {
+        'creation_id': media_container_id,
+        'access_token': access_token
+    }
+
+    publish_response = requests.post(publish_media_url, params=publish_params)
+    
+    if publish_response.status_code != 200:
+        print(f"Failed to publish media. Status Code: {publish_response.status_code}")
+        print("Response Text:", publish_response.text)
+        return False
+
+    print("Successfully posted to Instagram")
     return True
