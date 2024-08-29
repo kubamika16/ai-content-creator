@@ -55,7 +55,5 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: "eu-west-2"
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          INSTAGRAM_USERNAME: ${{ secrets.INSTAGRAM_USERNAME }}
-          INSTAGRAM_PASSWORD: ${{ secrets.INSTAGRAM_PASSWORD }}
           MIDJOURNEY_API_KEY: ${{ secrets.MIDJOURNEY_API_KEY }}
 

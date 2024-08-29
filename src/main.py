@@ -4,7 +4,7 @@ import sys
 # This ensures the 'package' directory is in the path
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", "package"))
 
-# Print sys.path to verify
+# Print sys.path to verify  
 print("Python sys.path:", sys.path)
 
 from src.openai_interaction import get_openai_response
@@ -15,7 +15,12 @@ from src.midjourney_interaction import generate_image, download_image_from_url
 def main(event, context):
 
     # Step 1: Generate a recipe using OpenAI
-    recipe_prompt = "Create a quick and easy breakfast recipe that's packed with protein. The recipe should be simple to follow and use clear language. It can be based on any of the following categories: Scrambled Eggs, Protein Smoothies, Greek Yogurt Parfaits, Overnight Oats, Breakfast Burritos, Cottage Cheese Bowls, Protein Pancakes, Avocado Toast with Eggs, Nut Butter Toast, Chia Pudding, Quinoa Bowls, Hard-Boiled Eggs, Tuna or Chicken Salad Wraps, Protein Muffins, Breakfast Quesadillas, Breakfast Bowls, Protein Bars, Omelette Variations, Breakfast Sandwiches, High-Protein Cereals, Egg-Based Dishes, Meat and Cheese Platters, Plant-Based Protein Breakfasts, Protein-Enhanced Baked Goods, Savory Breakfasts, Nut and Seed-Based Meals, Dairy-Based Breakfasts, Protein-Enhanced Drinks, Legume-Based Breakfasts, or Seafood-Based Breakfasts. Include a few emojis to make it more engaging, but don't overdo it. Add an emoji to every ingredient in the recipe, but avoid them in the instructions. Do not use any introductory phrases, stars (*), or special markdown symbols (**, ###). Just provide the recipe directly."
+    recipe_prompt = """Create a simple and high-protein meal prep recipe that can be portioned into three meals for three days. The recipe should be easy to follow and use clear language. It can be based on any of the following categories: Chicken and Rice, Beef and Quinoa, Tofu Stir-fry, Salmon and Vegetables, Turkey Meatballs with Pasta, Lentil Curry, Tuna Salad with Sweet Potatoes, Grilled Shrimp with Couscous, Baked Tofu with Veggies, Ground Turkey Chili, or Egg-Based Dishes.
+                    After the recipe title, include a cost estimate in GBP and total protein content in grams, with the breakdown per meal. The format should be:
+                    Cost Estimate: £15 (£5 per meal) (/br)
+                    Total Protein: 180g (60g per meal)
+                    List the ingredients followed by the instructions. Add an emoji to every ingredient in the recipe, but do not use emojis in the instructions. Avoid any introductory phrases, special characters, or markdown symbols. Provide the recipe directly without additional formatting. IN ANY CIRCUMSTANCES DO NOT MAKE ANYTHING BOLD"""
+    
     recipe = get_openai_response(recipe_prompt)
     print("Generated Recipe:")
     print(recipe)
