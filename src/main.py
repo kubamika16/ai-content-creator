@@ -16,10 +16,17 @@ def main(event, context):
 
     # Step 1: Generate a recipe using OpenAI
     recipe_prompt = """Create a simple and high-protein meal prep recipe that can be portioned into three meals for three days. The recipe should be easy to follow and use clear language. It can be based on any of the following categories: Chicken and Rice, Beef and Quinoa, Tofu Stir-fry, Salmon and Vegetables, Turkey Meatballs with Pasta, Lentil Curry, Tuna Salad with Sweet Potatoes, Grilled Shrimp with Couscous, Baked Tofu with Veggies, Ground Turkey Chili, or Egg-Based Dishes.
-                    After the recipe title, include a cost estimate in GBP and total protein content in grams, with the breakdown per meal. The format should be:
-                    Cost Estimate: £15 (£5 per meal) (/br)
-                    Total Protein: 180g (60g per meal)
-                    List the ingredients followed by the instructions. Add an emoji to every ingredient in the recipe, but do not use emojis in the instructions. Avoid any introductory phrases, special characters, or markdown symbols. Provide the recipe directly without additional formatting. IN ANY CIRCUMSTANCES DO NOT MAKE ANYTHING BOLD"""
+
+After the recipe title, include a cost estimate in GBP and total protein content in grams, with the breakdown per meal. The format should be:
+
+Cost Estimate: £15 (£5 per meal)
+Total Protein: 180g (60g per meal)
+
+List the ingredients followed by the instructions. Add an emoji to every ingredient in the recipe, but do not use emojis in the instructions. Avoid any introductory phrases, special characters, or markdown symbols. Provide the recipe directly without additional formatting.
+
+Ensure that the language used is neutral and free from any phrases or terms that might trigger banned word filters. Avoid complex or overly descriptive language that might be misconstrued by content filters. The focus should remain on clarity and simplicity in both the recipe and the instructions.
+
+"""
     
     recipe = get_openai_response(recipe_prompt)
     print("Generated Recipe:")
