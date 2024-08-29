@@ -5,6 +5,7 @@ on:
     paths:
       - "**.py"
       - "src/**"
+      - "function/**"
       - "config/**"
       - "package/**"
     branches: [main]
@@ -27,11 +28,13 @@ jobs:
         run: |
           pwd
           ls -la
+          ls -la function/
 
       - name: Create Zip file for Lambda function
         run: |
           mkdir deployment
           cp -r src/ deployment/
+          cp -r function/ deployment/
           cp -r package/ deployment/package/
           cd deployment
           zip -r ../code.zip .
