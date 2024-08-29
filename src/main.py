@@ -24,8 +24,6 @@ Total Protein: 180g (60g per meal)
 
 List the ingredients followed by the instructions. Add an emoji to every ingredient in the recipe, but do not use emojis in the instructions. Avoid any introductory phrases, special characters, or markdown symbols. Provide the recipe directly without additional formatting.
 
-Ensure that the language used is neutral and free from any phrases or terms that might trigger banned word filters. Avoid complex or overly descriptive language that might be misconstrued by content filters. The focus should remain on clarity and simplicity in both the recipe and the instructions.
-
 """
     
     recipe = get_openai_response(recipe_prompt)
@@ -42,6 +40,7 @@ Ensure that the language used is neutral and free from any phrases or terms that
             "\"A vibrant close-up shot of a Peanut Butter Banana Smoothie being poured into a glass. The smoothie is rich and creamy, with visible swirls of peanut butter. Background shows a modern kitchen with stainless steel appliances, fresh bananas, a container of almond milk, and a bowl of ice cubes. Bright and airy lighting, dynamic composition. Emphasize the visual storytelling, ensuring the focus remains on the elements while avoiding text. Created Using: high-speed camera, realistic textures, vibrant lighting, modern kitchen setting, detailed ingredients, motion capture, HD quality\"\n\n"
             "\"A beautifully styled breakfast table with a Peanut Butter Banana Smoothie in a glass bottle, ready to be enjoyed. The smoothie has a smooth, creamy texture, garnished with a dollop of Greek yogurt and a honey drizzle. Background includes a neatly arranged breakfast spread with fresh fruit, a jar of honey, and a small plate of toast with peanut butter. Soft natural light, inviting atmosphere. Highlight the visual arrangement, with careful attention to details and avoiding the inclusion of text. Created Using: medium format camera, rich colors, detailed composition, natural light, breakfast setting, HD quality\"\n\n"
             "\"An aesthetically pleasing flat lay of a Peanut Butter Banana Smoothie and its ingredients. The smoothie is in a clear glass, showing its thick, creamy consistency. Surrounding the glass are neatly arranged ingredients: a ripe banana, a scoop of protein powder, a spoonful of peanut butter, and a small cup of almond milk. Background is a clean white marble countertop. Bright, even lighting, minimalistic style. Focus on the clean aesthetic, with an emphasis on the arrangement while avoiding text elements. Created Using: top-down view, clean aesthetic, bright lighting, minimalist design, ingredient focus, HD quality\"\n\n"
+            "\"Ensure that the language used is neutral and free from any phrases or terms that might trigger banned word filters. Avoid complex or overly descriptive language that might be misconstrued by content filters. The focus should remain on clarity and simplicity in both the recipe and the instructions.\"\n\n"
         )
 
 
