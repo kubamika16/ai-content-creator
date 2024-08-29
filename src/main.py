@@ -60,16 +60,16 @@ List the ingredients followed by the instructions. Add an emoji to every ingredi
     print(image_prompt_result)
 
     # Step 3: Generate an image using MidJourney based on the prompt
-    # image_url = generate_image(image_prompt_result)
+    image_url = generate_image(image_prompt_result)
     # DUMMY URL for tests
-    image_url = "https://cdn.apiframe.pro/images/75662822011517142689279460395812-1.png"
+    # image_url = "https://cdn.apiframe.pro/images/75662822011517142689279460395812-1.png"
     if not image_url:
         print("Failed to generate or fetch the image.")
         return
     print(f"Image URL: {image_url}")
 
     # Step 4: Post the generated image and recipe to Instagram
-    # post_to_instagram(image_url, recipe)
+    post_to_instagram(image_url, recipe)
 
 
 if __name__ == "__main__":
