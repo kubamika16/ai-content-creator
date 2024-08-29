@@ -1,6 +1,17 @@
 import os
 import sys
 
+# from fatsecret import Fatsecret
+
+# client_id="208a6fbf85ec4babbf87819a875b5809"
+# client_secret="6966544e37ff49ff87fc4c8502b99675"
+
+# fs = Fatsecret(client_id, client_secret)
+
+# foods = fs.foods_search("Tacos")
+
+# print(foods)
+
 # This ensures the 'package' directory is in the path
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", "package"))
 
@@ -15,7 +26,7 @@ from src.midjourney_interaction import generate_image, download_image_from_url
 def main(event, context):
 
     # Step 1: Generate a recipe using OpenAI
-    recipe_prompt = """Create a simple and high-protein meal prep recipe that can be portioned into three meals for three days. The recipe should be easy to follow and use clear language. It can be based on any of the following categories: Chicken and Rice, Beef and Quinoa, Tofu Stir-fry, Salmon and Vegetables, Turkey Meatballs with Pasta, Lentil Curry, Tuna Salad with Sweet Potatoes, Grilled Shrimp with Couscous, Baked Tofu with Veggies, Ground Turkey Chili, or Egg-Based Dishes.
+    recipe_prompt = """Create a simple and high-protein meal prep recipe that can be portioned into three meals for three days. The recipe should be easy to follow and use clear language.
 
 After the recipe title, include a cost estimate in GBP and total protein content in grams, with the breakdown per meal. The format should be:
 
@@ -49,16 +60,16 @@ List the ingredients followed by the instructions. Add an emoji to every ingredi
     print(image_prompt_result)
 
     # Step 3: Generate an image using MidJourney based on the prompt
-    image_url = generate_image(image_prompt_result)
+    # image_url = generate_image(image_prompt_result)
     # DUMMY URL for tests
-    # image_url = "https://cdn.apiframe.pro/images/75662822011517142689279460395812-1.png"
+    image_url = "https://cdn.apiframe.pro/images/75662822011517142689279460395812-1.png"
     if not image_url:
         print("Failed to generate or fetch the image.")
         return
     print(f"Image URL: {image_url}")
 
     # Step 4: Post the generated image and recipe to Instagram
-    post_to_instagram(image_url, recipe)
+    # post_to_instagram(image_url, recipe)
 
 
 if __name__ == "__main__":

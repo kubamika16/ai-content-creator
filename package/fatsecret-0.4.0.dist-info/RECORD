@@ -1,0 +1,11 @@
+fatsecret-0.4.0.dist-info/INSTALLER,sha256=zuuue4knoyJ-UwPPXg8fezS7VCrXJQrAP7zeNuwvFQg,4
+fatsecret-0.4.0.dist-info/LICENSE,sha256=evtOdrWCvtqvrQw-TmHCplPg5uCKk5oyVdQ8Ns5rqt0,1078
+fatsecret-0.4.0.dist-info/METADATA,sha256=v38o-ICIqYpFxlgShv_Kaz-dnNF6kUgRGKoW362_w7E,2452
+fatsecret-0.4.0.dist-info/RECORD,,
+fatsecret-0.4.0.dist-info/REQUESTED,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+fatsecret-0.4.0.dist-info/WHEEL,sha256=ewwEueio1C2XeHTvT17n8dZUJgOvyCWCt0WVNLClP9o,92
+fatsecret-0.4.0.dist-info/top_level.txt,sha256=gc7C7Hi9Bh5y-C1i0SW3J5eR8bDSmhKz0QM4MyBEo5Y,10
+fatsecret/__init__.py,sha256=c9G4xRwABMMWDDg-QkGJEx-ehPlk7eJ8OX7G2q5PYxM,151
+fatsecret/__pycache__/__init__.cpython-312.pyc,,
+fatsecret/__pycache__/fatsecret.cpython-312.pyc,,
+fatsecret/fatsecret.py,sha256=j1W3jDw1mTNp0cgRzBlAFqgATUeD-ABRiWIKuCNNjj4,42121
