@@ -62,5 +62,5 @@ def post_to_instagram(photo_url, caption):
         print("Response Text:", publish_response.text)
         return False
 
-    print("Successfully posted to Instagram. Great job!")
+    print("Successfully posted to Instagram. Amazing job!")
     return True
