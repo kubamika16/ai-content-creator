@@ -23,14 +23,14 @@ sys.path.append(os.path.join(os.path.dirname(__file__), "..", "package"))
 # Print sys.path to verify  
 print("Python sys.path:", sys.path)
 
-from openai_interaction import get_openai_response
-from openai_interaction import generate_dalee3_image
-from instagram_poster import post_to_instagram
-from midjourney_interaction import generate_image, download_image_from_url
-from utils import get_random_meal
+from src.openai_interaction import get_openai_response
+from src.openai_interaction import generate_dalee3_image
+from src.instagram_poster import post_to_instagram
+from src.midjourney_interaction import generate_image, download_image_from_url
+from src.utils import get_random_meal
 
 
-def main():
+def main(event, context):
 
     # Step 1: Generate a recipe using OpenAI
 
