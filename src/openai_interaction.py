@@ -30,4 +30,27 @@ def get_openai_response(prompt, model="gpt-4o"):
          print(f"An error occured: {e}")
          return None
 
+def generate_dalee3_image(prompt, model="dall-e-3", size="1024x1024", quality="hd"):
+    """
+    Generates an image based on the provided prompt using DALL·E 3.
 
+    Args:
+        prompt (str): The text prompt to generate the image.
+        model (str): The model to use (default is "dall-e-3").
+        size (str): The size of the image (default is "1024x1024").
+        quality (str): The quality of the image (default is "hd").
+
+    Returns:
+        str: The URL of the generated image.
+    """
+    response = client.images.generate(
+        model=model,
+        prompt=prompt,
+        size=size,
+        quality=quality,
+        n=1,
+    )
+    
+    # Retrieve and return the URL of the generated image
+    image_url = response.data[0].url
+    return image_url

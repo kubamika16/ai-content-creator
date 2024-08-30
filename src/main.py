@@ -1,6 +1,11 @@
 import os
 import sys
 
+
+
+
+# Example usage:
+
 # from fatsecret import Fatsecret
 
 # client_id="208a6fbf85ec4babbf87819a875b5809"
@@ -18,24 +23,79 @@ sys.path.append(os.path.join(os.path.dirname(__file__), "..", "package"))
 # Print sys.path to verify  
 print("Python sys.path:", sys.path)
 
-from src.openai_interaction import get_openai_response
-from src.instagram_poster import post_to_instagram
-from src.midjourney_interaction import generate_image, download_image_from_url
+from openai_interaction import get_openai_response
+from openai_interaction import generate_dalee3_image
+from instagram_poster import post_to_instagram
+from midjourney_interaction import generate_image, download_image_from_url
+from utils import get_random_meal
 
 
-def main(event, context):
+def main():
 
     # Step 1: Generate a recipe using OpenAI
-    recipe_prompt = """Create a simple and high-protein meal prep recipe that can be portioned into three meals for three days. The recipe should be easy to follow and use clear language.
 
+    meal_prep_ideas = [
+    "Chicken Stir-Fry Bowls",
+    "Beef and Broccoli",
+    "Turkey Meatballs",
+    "Salmon with Asparagus",
+    "Chickpea Curry",
+    "Greek Chicken Salad",
+    "Teriyaki Chicken",
+    "Lentil Soup",
+    "Pork Lettuce Wraps",
+    "Spicy Turkey Chili",
+    "Quinoa and Black Bean Bowls",
+    "Chicken Fajitas",
+    "Beef Tacos",
+    "Garlic Butter Shrimp",
+    "Tofu Stir-Fry",
+    "Peanut Butter Chicken",
+    "Vegetable and Quinoa Salad",
+    "Ham and Cheese Stuffed Chicken",
+    "Sweet Potato and Chicken Bake",
+    "Turkey Burgers",
+    "Fish Tacos",
+    "Spinach and Feta Stuffed Chicken",
+    "Beef Zucchini Skillet",
+    "Pasta with Turkey Sausage",
+    "Chicken and Sweet Potato Salad",
+    "Asian Chicken Lettuce Wraps",
+    "BBQ Chicken Bowls",
+    "Roasted Veggie and Hummus Wraps",
+    "Turkey and Quinoa Stuffed Peppers",
+    "Balsamic Chicken and Veggies",
+    "Chicken Pesto Pasta",
+    "Seafood Paella",
+    "Slow Cooker Chicken Chili",
+    "Cajun Shrimp and Grits",
+    "Chicken Caesar Wraps",
+    "Stuffed Cabbage Rolls",
+    "Buffalo Chicken Bowls",
+    "Steak Fajita Roll Ups",
+    "Moroccan Chicken Stew",
+    "Chimichurri Steak Bowls",
+    "Tex-Mex Turkey Skillet",
+    "Mango Chicken Quinoa Bowls",
+    "Chicken and Veggie Kabobs",
+    "Garlic Soy Glazed Salmon",
+    "Stuffed Peppers with Beef and Rice",
+    "Jerk Chicken with Pineapple Salsa",
+    "Chicken Parmesan with Zoodles",
+    "Sheet Pan Teriyaki Chicken",
+    "Beef Patties with Veggies and Rice",
+    "Chicken Quinoa Salad"
+]
+    random_meal = get_random_meal(meal_prep_ideas)
+
+    recipe_prompt = f"""Create a simple and high-protein meal prep recipe that can be portioned into three meals for three days. The recipe should be easy to follow and use clear language. Recipe should be about {random_meal} 
 After the recipe title, include a cost estimate in GBP and total protein content in grams, with the breakdown per meal. The format should be:
-
 Cost Estimate: £15 (£5 per meal)
 Total Protein: 180g (60g per meal)
-
+Make sure the recipe includes a variety of ingredients such as lean proteins, whole grains, and colorful vegetables. Encourage the use of spices, herbs, and healthy sauces to enhance flavor. Each meal should be balanced, with a mix of protein, carbs, and vegetables. Consider different cooking methods like grilling, roasting, or stir-frying to add variety to the dish.
 List the ingredients followed by the instructions. Add an emoji to every ingredient in the recipe, but do not use emojis in the instructions. Avoid any introductory phrases, special characters, or markdown symbols. Provide the recipe directly without additional formatting.
-
 """
+
     
     recipe = get_openai_response(recipe_prompt)
     print("Generated Recipe:")
@@ -46,13 +106,14 @@ List the ingredients followed by the instructions. Add an emoji to every ingredi
             f"You have to create a prompt for MidJourney. Based on the recipe below, and then some examples create ONLY ONE PROMPT:\n\n"
             f"{recipe}\n\n"
             "And here is the way of how you are supposed to create it, a structure:\n\n"
-            "\"A high-resolution photograph of a freshly made Peanut Butter Banana Smoothie, served in a tall glass. The smoothie is creamy with a light tan color, topped with banana slices and a drizzle of peanut butter. Background features a rustic kitchen counter with a blender, ripe bananas, a jar of peanut butter, and a small bowl of Greek yogurt. Bright morning light coming from a nearby window, soft shadows, natural look. Focus on the visual details, with an emphasis on imagery and avoiding text elements. Created Using: DSLR camera, shallow depth of field, natural light, high contrast, rustic props, vibrant colors, HD quality\"\n\n"
-            "\"An inviting breakfast scene featuring a Peanut Butter Banana Smoothie in a mason jar, with a metal straw. The smoothie is thick and smooth, garnished with a sprinkle of protein powder and a honey drizzle. Background includes a wooden cutting board with sliced bananas, a spoon with peanut butter, and a scoop of protein powder. Soft morning light, cozy kitchen ambiance. Prioritize the imagery, with a focus on visual appeal and avoiding any text. Created Using: macro lens, natural hues, soft focus background, cozy elements, warm tones, detailed texture, HD quality\"\n\n"
-            "\"A vibrant close-up shot of a Peanut Butter Banana Smoothie being poured into a glass. The smoothie is rich and creamy, with visible swirls of peanut butter. Background shows a modern kitchen with stainless steel appliances, fresh bananas, a container of almond milk, and a bowl of ice cubes. Bright and airy lighting, dynamic composition. Emphasize the visual storytelling, ensuring the focus remains on the elements while avoiding text. Created Using: high-speed camera, realistic textures, vibrant lighting, modern kitchen setting, detailed ingredients, motion capture, HD quality\"\n\n"
-            "\"A beautifully styled breakfast table with a Peanut Butter Banana Smoothie in a glass bottle, ready to be enjoyed. The smoothie has a smooth, creamy texture, garnished with a dollop of Greek yogurt and a honey drizzle. Background includes a neatly arranged breakfast spread with fresh fruit, a jar of honey, and a small plate of toast with peanut butter. Soft natural light, inviting atmosphere. Highlight the visual arrangement, with careful attention to details and avoiding the inclusion of text. Created Using: medium format camera, rich colors, detailed composition, natural light, breakfast setting, HD quality\"\n\n"
-            "\"An aesthetically pleasing flat lay of a Peanut Butter Banana Smoothie and its ingredients. The smoothie is in a clear glass, showing its thick, creamy consistency. Surrounding the glass are neatly arranged ingredients: a ripe banana, a scoop of protein powder, a spoonful of peanut butter, and a small cup of almond milk. Background is a clean white marble countertop. Bright, even lighting, minimalistic style. Focus on the clean aesthetic, with an emphasis on the arrangement while avoiding text elements. Created Using: top-down view, clean aesthetic, bright lighting, minimalist design, ingredient focus, HD quality\"\n\n"
+            "\"A high-resolution photograph of a freshly prepared meal prep trio with roasted chicken breast, cooked quinoa, and steamed broccoli, all divided into meal prep containers. The chicken breast is sliced into succulent strips, seasoned with garlic, salt, and pepper, and drizzled with olive oil. The quinoa is fluffy and perfectly cooked, paired with tender broccoli florets. A lemon wedge is placed next to each serving for a fresh burst of flavor. Background features a clean kitchen counter with a pot of quinoa, a steamer basket, and a baking sheet. Bright, natural lighting highlights the freshness and detail of the ingredients. Created Using: DSLR camera, shallow depth of field, natural light, high contrast, minimalist props, vibrant colors, HD quality\"\n\n"
+            "\"A high-resolution photograph of a colorful meal prep with grilled salmon, brown rice, and mixed vegetables (bell peppers, zucchini, and carrots). The salmon is perfectly seared, with a slight char on the edges, laid over a bed of fluffy brown rice. The vegetables are sautéed to a tender-crisp texture, with vibrant colors and a light seasoning of herbs. The meal is neatly arranged in meal prep containers. Background shows a rustic wooden kitchen table with a bowl of fresh lemons, a bottle of olive oil, and a sprinkle of herbs. Natural light illuminates the scene, creating a fresh and appetizing look. Created Using: DSLR camera, shallow depth of field, natural light, high contrast, rustic props, vibrant colors, HD quality\"\n\n"
+            "\"A high-resolution photograph of a healthy meal prep featuring ground turkey, roasted sweet potatoes, and steamed green beans, all neatly divided into meal prep containers. The ground turkey is lightly browned and seasoned with herbs, creating a savory base. The sweet potatoes are roasted to perfection, with caramelized edges and a soft interior. The green beans are steamed and vibrant, adding a pop of color to the meal. Background includes a kitchen counter with a cutting board, spices, and a bowl of fresh herbs. Bright natural light emphasizes the freshness and detail of the ingredients. Created Using: DSLR camera, shallow depth of field, natural light, vibrant colors, HD quality\"\n\n"
+            "\"A high-resolution photograph of a plant-based meal prep with tofu stir-fry, jasmine rice, and steamed broccoli. The tofu is golden brown, stir-fried with a mix of bell peppers, snap peas, and carrots, creating a colorful and nutritious dish. The jasmine rice is fluffy and aromatic, complementing the stir-fry. The broccoli is steamed to a bright green, adding a fresh element to the meal. Background features a modern kitchen setup with a wok, fresh vegetables, and a bottle of soy sauce. Natural light highlights the textures and colors, creating an appetizing presentation. Created Using: DSLR camera, shallow depth of field, natural light, vibrant colors, HD quality\"\n\n"
+            "\"A high-resolution photograph of a balanced meal prep with grilled chicken thighs, wild rice, and roasted asparagus. The chicken thighs are grilled with a crispy skin, seasoned with a blend of herbs and spices. The wild rice is fluffy with a nutty flavor, providing a hearty base. The asparagus is roasted to a tender texture with slightly charred tips, adding a gourmet touch to the meal. Background includes a clean kitchen counter with a tray of roasted vegetables, a cutting board, and a knife. Natural light creates a warm and inviting atmosphere. Created Using: DSLR camera, shallow depth of field, natural light, rich colors, HD quality\"\n\n"
             "\"Ensure that the language used is neutral and free from any phrases or terms that might trigger banned word filters. Avoid complex or overly descriptive language that might be misconstrued by content filters. The focus should remain on clarity and simplicity in both the recipe and the instructions.\"\n\n"
-        )
+)
+
 
 
     image_prompt_result = get_openai_response(image_prompt)
@@ -63,6 +124,7 @@ List the ingredients followed by the instructions. Add an emoji to every ingredi
     image_url = generate_image(image_prompt_result)
     # DUMMY URL for tests
     # image_url = "https://cdn.apiframe.pro/images/75662822011517142689279460395812-1.png"
+    # image_url = generate_dalee3_image(image_prompt_result)
     if not image_url:
         print("Failed to generate or fetch the image.")
         return
