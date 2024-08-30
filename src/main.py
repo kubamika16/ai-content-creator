@@ -20,14 +20,14 @@ sys.path.append(os.path.join(os.path.dirname(__file__), "..", "package"))
 # Print sys.path to verify  
 print("Python sys.path:", sys.path)
 
-from src.openai_interaction import get_openai_response
-from src.openai_interaction import generate_dalee3_image
-from src.instagram_poster import post_to_instagram
-from src.midjourney_interaction import generate_image, download_image_from_url
-from src.utils import get_random_meal
+from openai_interaction import get_openai_response
+from openai_interaction import generate_dalee3_image
+from instagram_poster import post_to_instagram
+from midjourney_interaction import generate_image, download_image_from_url
+from utils import get_random_meal
 
 
-def main(event, context):
+def main():
 
     # Step 1: Generate a recipe using OpenAI
 
@@ -94,7 +94,7 @@ def main(event, context):
     
     Make sure the recipe includes a variety of ingredients such as lean proteins, whole grains, and colorful vegetables. Encourage the use of spices, herbs, and healthy sauces to enhance flavor. Each meal should be balanced, with a mix of protein, carbs, and vegetables. Consider different cooking methods like grilling, roasting, or stir-frying to add variety to the dish.
     
-    List the ingredients followed by the instructions. Add an emoji to every ingredient in the recipe, but do not use emojis in the instructions. Avoid any introductory phrases, special characters, or markdown symbols. Use 10-15 relevant hashtags at the end of the recipe, distributed as follows:
+    List the ingredients followed by the instructions. Add an emoji to every ingredient in the recipe, but do not use emojis in the instructions. Avoid any introductory phrases, special characters, or markdown symbols. Use about 15 relevant hashtags at the end of the recipe, distributed as follows:
     - 5-7 Popular Hashtags (e.g., #MealPrep, #HealthyEating)
     - 3-5 Niche-Specific Hashtags (e.g., #SeafoodPaella, #BudgetFriendlyMeals)
     - 2-3 Branded or Unique Hashtags (e.g., your personal or unique hashtags like #QuickPrepEats, #HealthyPocketMeals)
@@ -127,9 +127,9 @@ def main(event, context):
     print(image_prompt_result)
 
     # Step 3: Generate an image using MidJourney based on the prompt
-    image_url = generate_image(image_prompt_result)
+    # image_url = generate_image(image_prompt_result)
     # DUMMY URL for tests
-    # image_url = "https://cdn.apiframe.pro/images/75662822011517142689279460395812-1.png"
+    image_url = "https://cdn.apiframe.pro/images/75662822011517142689279460395812-1.png"
     # image_url = generate_dalee3_image(image_prompt_result)
     if not image_url:
         print("Failed to generate or fetch the image.")
@@ -137,7 +137,7 @@ def main(event, context):
     print(f"Image URL: {image_url}")
 
     # Step 4: Post the generated image and recipe to Instagram
-    post_to_instagram(image_url, recipe)
+    # post_to_instagram(image_url, recipe)
 
 
 if __name__ == "__main__":
