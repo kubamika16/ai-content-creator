@@ -1,9 +1,6 @@
 import os
 import sys
 
-
-
-
 # Example usage:
 
 # from fatsecret import Fatsecret
@@ -88,13 +85,21 @@ def main(event, context):
 ]
     random_meal = get_random_meal(meal_prep_ideas)
 
-    recipe_prompt = f"""Create a simple and high-protein meal prep recipe that can be portioned into three meals for three days. The recipe should be easy to follow and use clear language. Recipe should be about {random_meal} 
-After the recipe title, include a cost estimate in GBP and total protein content in grams, with the breakdown per meal. The format should be:
-Cost Estimate: £15 (£5 per meal)
-Total Protein: 180g (60g per meal)
-Make sure the recipe includes a variety of ingredients such as lean proteins, whole grains, and colorful vegetables. Encourage the use of spices, herbs, and healthy sauces to enhance flavor. Each meal should be balanced, with a mix of protein, carbs, and vegetables. Consider different cooking methods like grilling, roasting, or stir-frying to add variety to the dish.
-List the ingredients followed by the instructions. Add an emoji to every ingredient in the recipe, but do not use emojis in the instructions. Avoid any introductory phrases, special characters, or markdown symbols. Provide the recipe directly without additional formatting.
-"""
+    recipe_prompt = f"""Create a simple, budget-friendly, and high-protein meal prep recipe that can be portioned into three meals for three days. The recipe should be easy to follow and use clear language. The recipe should be about {random_meal}.
+    
+    After the recipe title, include a cost estimate in GBP and total protein content in grams, with the breakdown per meal. The format should be:
+    Cost Estimate: £[amount] (£[amount] per meal)
+    Total Protein: [amount]g ([amount]g per meal)
+    
+    Make sure the recipe includes a variety of ingredients such as lean proteins, whole grains, and colorful vegetables. Encourage the use of spices, herbs, and healthy sauces to enhance flavor. Each meal should be balanced, with a mix of protein, carbs, and vegetables. Consider different cooking methods like grilling, roasting, or stir-frying to add variety to the dish.
+    
+    List the ingredients followed by the instructions. Add an emoji to every ingredient in the recipe, but do not use emojis in the instructions. Avoid any introductory phrases, special characters, or markdown symbols. Use 10-15 relevant hashtags at the end of the recipe, distributed as follows:
+    - 5-7 Popular Hashtags (e.g., #MealPrep, #HealthyEating)
+    - 3-5 Niche-Specific Hashtags (e.g., #SeafoodPaella, #BudgetFriendlyMeals)
+    - 2-3 Branded or Unique Hashtags (e.g., your personal or unique hashtags like #QuickPrepEats, #HealthyPocketMeals)
+    
+    Do not include any additional formatting beyond what is specified."""
+
 
     
     recipe = get_openai_response(recipe_prompt)
