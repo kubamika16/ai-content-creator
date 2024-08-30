@@ -88,8 +88,9 @@ def main(event, context):
     recipe_prompt = f"""Create a simple, budget-friendly, and high-protein meal prep recipe that can be portioned into three meals for three days. The recipe should be easy to follow and use clear language. The recipe should be about {random_meal}.
     
     After the recipe title, include a cost estimate in GBP and total protein content in grams, with the breakdown per meal. The format should be:
-    Cost Estimate: £[amount] (£[amount] per meal)
-    Total Protein: [amount]g ([amount]g per meal)
+    Portions: 3
+    Cost Estimate: $[amount] ($[amount] per meal) [MESSAGE TO GPT: devide amount by 3 (DONT SHOW THIS MESSAGE IN THE RECIPE)]
+    Total Protein: [amount]g ([amount]g per meal)[MESSAGE TO GPT: devide grams by 3 (DONT SHOW THIS MESSAGE IN THE RECIPE)]
     
     Make sure the recipe includes a variety of ingredients such as lean proteins, whole grains, and colorful vegetables. Encourage the use of spices, herbs, and healthy sauces to enhance flavor. Each meal should be balanced, with a mix of protein, carbs, and vegetables. Consider different cooking methods like grilling, roasting, or stir-frying to add variety to the dish.
     
